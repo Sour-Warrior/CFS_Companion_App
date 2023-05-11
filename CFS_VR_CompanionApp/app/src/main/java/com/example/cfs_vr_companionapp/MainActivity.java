@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
+    private static DifficultySettings difficultySettings = new DifficultySettings();
+
     BluetoothAdapter _bluetoothAdapter;
     Set<BluetoothDevice> pairedDevices;
     public ArrayList<BluetoothDevice> _devices;

@@ -24,16 +24,16 @@
         android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textview_first"
-        app:layout_constraintVertical_bias="0.218" />
+        app:layout_constraintVertical_bias="0.221" />
 
     <Button
         android:id="@+id/BTBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="592dp"
+        android:layout_marginBottom="588dp"
         android:text="Toggle Bluetooth"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,18 +44,18 @@
         android:id="@+id/pairBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="144dp"
-        android:layout_marginBottom="528dp"
+        android:layout_marginEnd="132dp"
+        android:layout_marginBottom="524dp"
         android:text="Pair Headset"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ListView
-        android:layout_width="409dp"
         android:id="@+id/allPairedDevices"
+        android:layout_width="409dp"
         android:layout_height="467dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="277dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="277dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
