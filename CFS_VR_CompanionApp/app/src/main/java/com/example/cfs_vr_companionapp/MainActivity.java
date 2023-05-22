@@ -44,13 +44,18 @@ public class MainActivity extends AppCompatActivity {
 
     private static DifficultySettings difficultySettings = new DifficultySettings();
 
-    private TCPServer server;
+    public static TCPServer server;
+    ;
 
     private AppBarConfiguration appBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+        server = new TCPServer(758);
+
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -61,7 +66,9 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        this.server = new TCPServer();
+        Thread thread = new Thread(DiscoverThread.getInstance());
+        thread.start();
+
 
         binding.fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,8 +80,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-
 
 
     @Override
