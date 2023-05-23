@@ -79,11 +79,9 @@ public class TCPServer implements Runnable
         // send some test data
         try
         {
-            this.dataOutputStream.writeInt( 123 );
+            byte[] testData = "Ping from Android device".getBytes();
+            this.dataOutputStream.write(testData );
             this.dataOutputStream.flush();
-            //sendMessage();
-            //int test = this.dataInputStream.readInt();
-            //System.out.println( "byte received: "+test );
         }
         catch ( IOException e )
         {
@@ -91,7 +89,7 @@ public class TCPServer implements Runnable
             e.printStackTrace();
         }
 
-        // placeholder recv loop
+        // Listen for incoming data
         while ( true )
         {
             try
@@ -118,14 +116,15 @@ public class TCPServer implements Runnable
     }
 
     //Begin a new thread and send a message to the TCP client
-    public void sendMessage() {
+    public void sendMessage(String msg) {
 
         Thread thread1 = new Thread(new Runnable()  {
             @Override
             public void run() {
                 if (isConnected && dataOutputStream != null && dataInputStream != null) {
                     try {
-                        dataOutputStream.writeInt( 1234 );
+                        byte[] bytes = msg.getBytes();
+                        dataOutputStream.write(bytes);
                         dataOutputStream.flush();
 
                     } catch (Exception e) {

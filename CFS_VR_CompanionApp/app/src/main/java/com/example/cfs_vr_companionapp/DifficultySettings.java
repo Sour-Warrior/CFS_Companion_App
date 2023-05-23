@@ -78,10 +78,34 @@ public class DifficultySettings {
         }
     }
 
-    public JSONObject setDifficulty() {
-        // Parse the current difficulty settings to JSON format to be used within the VR system
-        
-        return null;
+    public void setCurrentMoistureLevel(String level) {
+        switch (level) {
+            case "Low":
+                currentMoistureLevel = moistureLevels.Low;
+                break;
+            case "Medium":
+                currentMoistureLevel = moistureLevels.Medium;
+                break;
+            case "High":
+                currentMoistureLevel = currentMoistureLevel.High;
+                break;
+        }
+    }
+
+    public void setQuickDifficulty(String level) {
+        // Quickly set difficulty of all settings
+        setWindSpeed(level);
+        setCurrentGrassHeight(level);
+        setCurrentMoistureLevel(level);
+        System.out.println(setDifficulty());
+
+    }
+
+    public String setDifficulty() {
+        // Convert the current difficulty settings to a string and send to VR client
+        String difficulty = currentWindSpeed.toString() + "|" + currentGrassHeight.toString() + "|"
+                + currentMoistureLevel.toString();
+        return difficulty;
     }
 
 }

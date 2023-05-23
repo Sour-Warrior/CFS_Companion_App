@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
 
-    private static DifficultySettings difficultySettings = new DifficultySettings();
+    public static DifficultySettings difficultySettings;
 
     public static TCPServer server;
     ;
@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         server = new TCPServer(758);
+        difficultySettings = new DifficultySettings();
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
 
 
     }
