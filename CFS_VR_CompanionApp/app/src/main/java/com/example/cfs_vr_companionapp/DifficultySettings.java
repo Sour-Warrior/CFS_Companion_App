@@ -12,6 +12,14 @@ public class DifficultySettings {
         High
     }
 
+    private enum treeDensity {
+        Low,
+        Medium,
+        High
+    }
+
+    private treeDensity currentTreeDensity;
+
     private windSpeed currentWindSpeed;
 
     private enum grassHeight {
@@ -22,8 +30,8 @@ public class DifficultySettings {
 
     private grassHeight currentGrassHeight;
 
-    private static final float[] WATER_CAPACITY = new float[] {20000, 30000, 40000};
-    private float currentWaterCapacity;
+    private static final int[] WATER_CAPACITY = new int[] {20000, 30000, 40000};
+    private int currentWaterCapacity;
 
     private enum moistureLevels {
         Low,
@@ -78,6 +86,20 @@ public class DifficultySettings {
         }
     }
 
+    public void setCurrentTreeDensity(String density) {
+        switch (density) {
+            case "Low":
+                currentTreeDensity = treeDensity.Low;
+                break;
+            case "Medium":
+                currentTreeDensity = treeDensity.Medium;
+                break;
+            case "High":
+                currentTreeDensity = treeDensity.High;
+                break;
+        }
+    }
+
     public void setCurrentMoistureLevel(String level) {
         switch (level) {
             case "Low":
@@ -92,19 +114,35 @@ public class DifficultySettings {
         }
     }
 
+    public void setWaterCapacity(String level) {
+        switch (level) {
+            case "Low":
+                currentWaterCapacity = WATER_CAPACITY[0];
+                break;
+            case "Medium":
+                currentWaterCapacity = WATER_CAPACITY[1];
+                break;
+            case "High":
+                currentWaterCapacity = WATER_CAPACITY[2];
+                break;
+        }
+    }
+
     public void setQuickDifficulty(String level) {
         // Quickly set difficulty of all settings
         setWindSpeed(level);
         setCurrentGrassHeight(level);
         setCurrentMoistureLevel(level);
+        setCurrentTreeDensity(level);
+        setWaterCapacity(level);
         System.out.println(setDifficulty());
 
     }
 
     public String setDifficulty() {
         // Convert the current difficulty settings to a string and send to VR client
-        String difficulty = currentWindSpeed.toString() + "|" + currentGrassHeight.toString() + "|"
-                + currentMoistureLevel.toString();
+        String difficulty = "DIFFICULTY_SETTINGS|" + currentWindSpeed.toString() + "|" + currentGrassHeight.toString() + "|"
+                + currentMoistureLevel.toString() + "|" + currentTreeDensity.toString() + "|" + currentWaterCapacity;
         return difficulty;
     }
 

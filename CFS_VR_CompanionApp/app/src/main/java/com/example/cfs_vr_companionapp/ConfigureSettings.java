@@ -33,7 +33,7 @@ public class ConfigureSettings extends Fragment {
             @Override
             public void onClick(View view) {
                 selectedButton = binding.low;
-                binding.low.setBackgroundColor(0x00FF00);
+                //binding.low.setBackgroundColor(0x00FF00);
                 MainActivity.difficultySettings.setQuickDifficulty("Low");
             }
         });
@@ -42,7 +42,7 @@ public class ConfigureSettings extends Fragment {
             @Override
             public void onClick(View view) {
                 selectedButton = binding.medium;
-                binding.medium.setBackgroundColor(0x00FF00);
+                //binding.medium.setBackgroundColor(0x00FF00);
                 MainActivity.difficultySettings.setQuickDifficulty("Medium");
             }
         });
@@ -51,8 +51,9 @@ public class ConfigureSettings extends Fragment {
             @Override
             public void onClick(View view) {
                 selectedButton = binding.high;
-                binding.high.setBackgroundColor(0x00FF00);
+                //binding.high.setBackgroundColor(0x00FF00);
                 MainActivity.difficultySettings.setQuickDifficulty("High");
+                MainActivity.server.sendMessage(MainActivity.difficultySettings.setDifficulty());
             }
         });
 

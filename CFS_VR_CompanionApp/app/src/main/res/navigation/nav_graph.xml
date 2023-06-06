@@ -32,5 +32,5 @@
         android:id="@+id/configureSettings"
         android:name="com.example.cfs_vr_companionapp.ConfigureSettings"
         android:label="ConfigureSettings"
-        tools:layout="@layout/configure_settings" />
+        tools:layout="@layout/configure_difficulty" />
 </navigation>

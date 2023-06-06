@@ -70,17 +70,6 @@ public class MainActivity extends AppCompatActivity {
         Thread thread = new Thread(DiscoverThread.getInstance());
         thread.start();
 
-
-        binding.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-
-
     }
 
 

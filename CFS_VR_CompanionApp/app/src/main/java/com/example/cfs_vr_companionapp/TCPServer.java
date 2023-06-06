@@ -37,7 +37,6 @@ public class TCPServer implements Runnable
     @Override
     public void run()
     {
-        // create a server socket
         try
         {
             this.serverSocket = new ServerSocket( 6000 );
@@ -48,8 +47,7 @@ public class TCPServer implements Runnable
             e.printStackTrace();
         }
 
-        // wait for a connection
-        System.out.println( "waiting for connections..." );
+        System.out.println( "waiting for connections" );
         try
         {
             this.socket = serverSocket.accept();
@@ -59,11 +57,11 @@ public class TCPServer implements Runnable
             System.out.println( "failed to accept" );
             e.printStackTrace();
         }
-        System.out.println( "client connected" );
+        System.out.println( "vr client connected" );
 
         this.isConnected = true;
 
-        // create input and output streams
+
         try
         {
             this.dataOutputStream = new DataOutputStream( new BufferedOutputStream( this.socket.getOutputStream() ) );
@@ -76,7 +74,7 @@ public class TCPServer implements Runnable
             e.printStackTrace();
         }
 
-        // send some test data
+
         try
         {
             byte[] testData = "Ping from Android device".getBytes();
@@ -118,7 +116,7 @@ public class TCPServer implements Runnable
     //Begin a new thread and send a message to the TCP client
     public void sendMessage(String msg) {
 
-        Thread thread1 = new Thread(new Runnable()  {
+        Thread messageThread = new Thread(new Runnable()  {
             @Override
             public void run() {
                 if (isConnected && dataOutputStream != null && dataInputStream != null) {
@@ -137,7 +135,7 @@ public class TCPServer implements Runnable
             }
         });
 
-        thread1.start();
+        messageThread.start();
         return;
     }
 }

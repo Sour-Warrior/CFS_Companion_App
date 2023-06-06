@@ -34,17 +34,10 @@ public class FirstFragment extends Fragment {
         binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                MainActivity.server.sendMessage("START");
             }
         });
 
-        binding.pairBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                MainActivity.server.sendMessage("HelloWorld");
-            }
-        });
 
         binding.CfgBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -28,7 +28,7 @@ public class DiscoverThread implements Runnable {
             this._socket = new DatagramSocket(9999, InetAddress.getByName("0.0.0.0"));
             _socket.setBroadcast(true);
             while (true) {
-                System.out.println(getClass().getName() + ">>>Ready to receive broadcast packets!");
+                System.out.println(getClass().getName() + ">>>Ready to receive");
 
                 //Receive a packet
                 byte[] recvBuf = new byte[15000];
@@ -36,7 +36,7 @@ public class DiscoverThread implements Runnable {
                 _socket.receive(packet);
 
                 //Packet received
-                System.out.println(getClass().getName() + ">>>Discovery packet received from: " + packet.getAddress().getHostAddress());
+                System.out.println(getClass().getName() + ">>>Packet received from: " + packet.getAddress().getHostAddress());
                 System.out.println(getClass().getName() + ">>>Packet received; data: " + new String(packet.getData()));
 
                 //See if the packet holds the right command (message)
@@ -44,6 +44,7 @@ public class DiscoverThread implements Runnable {
                 if (message.equals("DISCOVER_FUIFSERVER_REQUEST")) {
                     clientAddress = packet.getAddress();
                     clientPort = packet.getPort();
+                    // Send test package
                     byte[] sendData = "Hello world".getBytes();
 
                     //Send a response
@@ -54,7 +55,7 @@ public class DiscoverThread implements Runnable {
                 }
             }
         } catch (IOException e) {
-            System.out.println("error occurred");
+            System.out.println("error occurred with discovery");
         }
     }
 
