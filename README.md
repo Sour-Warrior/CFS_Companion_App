@@ -22,7 +22,8 @@ Press the Back button on the top left corner of the screen to navigate back to t
 
 ## Beginning the main scenario on VR
 
-On the main menu, press the "START TRAINING" button. If the connection has not been interrupted, the current scene in the VR app will change to the grassfire
+On the main menu, press the "START TRAINING" button. If the connection has not been interrupted, the current scene in the VR app will change to the Main Scene
+(the game itself).
 
 
 
