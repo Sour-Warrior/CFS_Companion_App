@@ -9,20 +9,20 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.cfs_vr_companionapp.databinding.ConfigureSettingsBinding;
+import com.example.cfs_vr_companionapp.databinding.ConfigureDifficultyBinding;
 
 public class ConfigureSettings extends Fragment {
 
     private Button selectedButton;
 
-    private ConfigureSettingsBinding binding;
+    private ConfigureDifficultyBinding binding;
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-        binding = ConfigureSettingsBinding.inflate(inflater, container, false);
+        binding = ConfigureDifficultyBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

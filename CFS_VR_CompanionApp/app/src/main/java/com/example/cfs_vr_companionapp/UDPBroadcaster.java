@@ -5,11 +5,22 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-public class DiscoverThread implements Runnable {
+//https://michieldemey.be/blog/network-discovery-using-udp-broadcast/
 
+
+public class UDPBroadcaster implements Runnable {
+    // This will begin a UDP broadcast so that the VR headset can find the IP address of the device running this app
+
+    private Thread thread;
     public DatagramSocket _socket;
     InetAddress clientAddress;
     int clientPort;
+
+    public UDPBroadcaster() {
+        this.thread = new Thread( this );
+        this.thread.setPriority( Thread.NORM_PRIORITY );
+        this.thread.start();
+    }
 
 
     public void sendMessage(String data) {
@@ -30,16 +41,16 @@ public class DiscoverThread implements Runnable {
             while (true) {
                 System.out.println(getClass().getName() + ">>>Ready to receive");
 
-                //Receive a packet
+
                 byte[] recvBuf = new byte[15000];
                 DatagramPacket packet = new DatagramPacket(recvBuf, recvBuf.length);
                 _socket.receive(packet);
 
-                //Packet received
+
                 System.out.println(getClass().getName() + ">>>Packet received from: " + packet.getAddress().getHostAddress());
                 System.out.println(getClass().getName() + ">>>Packet received; data: " + new String(packet.getData()));
 
-                //See if the packet holds the right command (message)
+
                 String message = new String(packet.getData()).trim();
                 if (message.equals("DISCOVER_FUIFSERVER_REQUEST")) {
                     clientAddress = packet.getAddress();
@@ -57,13 +68,5 @@ public class DiscoverThread implements Runnable {
         } catch (IOException e) {
             System.out.println("error occurred with discovery");
         }
-    }
-
-    public static DiscoverThread getInstance() {
-        return DiscoverThreadHolder.INSTANCE;
-    }
-
-    private static class DiscoverThreadHolder {
-        private static final DiscoverThread INSTANCE = new DiscoverThread();
     }
 }

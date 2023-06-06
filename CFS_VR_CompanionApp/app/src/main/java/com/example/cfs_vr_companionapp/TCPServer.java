@@ -24,13 +24,13 @@ public class TCPServer implements Runnable
 
     private boolean isConnected;
 
-    public TCPServer(int _test)
+    public TCPServer()
     {
         this.thread = new Thread( this );
         this.thread.setPriority( Thread.NORM_PRIORITY );
         this.thread.start();
         this.isConnected = false;
-        this.test = _test;
+
     }
 
 
@@ -74,7 +74,6 @@ public class TCPServer implements Runnable
             e.printStackTrace();
         }
 
-
         try
         {
             byte[] testData = "Ping from Android device".getBytes();
@@ -87,16 +86,12 @@ public class TCPServer implements Runnable
             e.printStackTrace();
         }
 
-        // Listen for incoming data
         while ( true )
         {
             try
             {
                 byte test = this.dataInputStream.readByte();
                 System.out.println( "byte received: "+test );
-
-
-                if ( test == 42 ) break;
             }
             catch ( IOException e )
             {
@@ -117,6 +112,7 @@ public class TCPServer implements Runnable
     public void sendMessage(String msg) {
 
         Thread messageThread = new Thread(new Runnable()  {
+            // New thread for when the app needs to send a message
             @Override
             public void run() {
                 if (isConnected && dataOutputStream != null && dataInputStream != null) {
@@ -138,4 +134,5 @@ public class TCPServer implements Runnable
         messageThread.start();
         return;
     }
+
 }

@@ -1,24 +1,8 @@
 package com.example.cfs_vr_companionapp;
 
-import android.Manifest;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.util.Log;
-import android.view.View;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -29,13 +13,6 @@ import com.example.cfs_vr_companionapp.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.ListView;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "Main Activity";
@@ -45,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
     public static DifficultySettings difficultySettings;
 
     public static TCPServer server;
-    ;
+
+    public static UDPBroadcaster udpBroadcast;
 
     private AppBarConfiguration appBarConfiguration;
 
@@ -54,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
-        server = new TCPServer(758);
+        udpBroadcast = new UDPBroadcaster();
+        server = new TCPServer();
+
         difficultySettings = new DifficultySettings();
 
 
@@ -67,8 +47,6 @@ public class MainActivity extends AppCompatActivity {
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
 
-        Thread thread = new Thread(DiscoverThread.getInstance());
-        thread.start();
 
     }
 
