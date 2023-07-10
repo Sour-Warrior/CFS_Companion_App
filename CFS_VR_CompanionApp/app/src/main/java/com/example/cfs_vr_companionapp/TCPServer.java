@@ -33,7 +33,6 @@ public class TCPServer implements Runnable
 
     }
 
-
     @Override
     public void run()
     {
@@ -60,7 +59,6 @@ public class TCPServer implements Runnable
         System.out.println( "vr client connected" );
 
         this.isConnected = true;
-
 
         try
         {
