@@ -13,6 +13,7 @@ import com.example.cfs_vr_companionapp.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "Main Activity";
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public static TCPServer server;
 
     public static UDPBroadcaster udpBroadcast;
+
 
     private AppBarConfiguration appBarConfiguration;
 

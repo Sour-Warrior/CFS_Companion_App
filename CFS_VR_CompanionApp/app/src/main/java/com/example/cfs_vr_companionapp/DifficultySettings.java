@@ -1,6 +1,6 @@
 package com.example.cfs_vr_companionapp;
 
-import org.json.JSONObject;
+
 
 public class DifficultySettings {
 
