@@ -1,6 +1,7 @@
 package com.example.cfs_vr_companionapp;
 
 import android.os.PowerManager;
+import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -20,7 +21,6 @@ public class TCPServer implements Runnable
     private Socket socket;
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
-    private int test;
 
     private boolean isConnected;
 
@@ -46,14 +46,14 @@ public class TCPServer implements Runnable
             e.printStackTrace();
         }
 
-        System.out.println( "waiting for connections" );
+        Log.d( MainActivity.TAG, "waiting for connections" );
         try
         {
             this.socket = serverSocket.accept();
         }
         catch ( IOException e )
         {
-            System.out.println( "failed to accept" );
+            Log.d(MainActivity.TAG, "idk");
             e.printStackTrace();
         }
         System.out.println( "vr client connected" );
