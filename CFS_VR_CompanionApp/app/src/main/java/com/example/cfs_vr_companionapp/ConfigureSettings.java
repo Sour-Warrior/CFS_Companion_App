@@ -44,16 +44,18 @@ public class ConfigureSettings extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        jsonString = "{\"setting\":[{\"setting_name\":\"Wind Speed\",\"setting_options\":\"Low, mid, high\"}, " +
-                "{\"setting_name\":\"Moisture Levels\",\"setting_options\":\"Low, mid, high\"}]}";
+        jsonString = "{ \n" +
+                "    \"app_version\": \"some\",\n" +
+                "    \"settings\": [\n" +
+                "        {\"setting_name\": \"Wind Speed\", \"options\": \"Low,Medium,High\"},\n" +
+                "        {\"setting_name\": \"Grass Height\", \"options\": \"Low,Medium,High\"},\n" +
+                "        {\"setting_name\": \"Water Capacity\", \"options\": \"10000, 20000, 30000\"}\n" +
+                "    ]\n" +
+                "}";
 
-        ArrayList<String> vals = new ArrayList<String>();
-        vals.add("Difficulty");
-        vals.add("Weather");
         difficultyList = new ArrayList<Map<String, String>>();
         retrieveFromJson();
         ListView difficultySettings = (ListView) getView().findViewById(R.id.difficulty_list);
-        SimpleAdapter _adapter = new SimpleAdapter(getActivity(), difficultyList, android.R.layout.simple_list_item_1, new String[] {"settings"}, new int[] {android.R.id.text1}  );
         difficultySettings.setAdapter(new DifficultyListAdapter(getActivity().getApplicationContext(), difficultyList));
 
         binding.low.setOnClickListener(new View.OnClickListener() {
@@ -86,14 +88,13 @@ public class ConfigureSettings extends Fragment {
     private void retrieveFromJson() {
         try {
             JSONObject response = new JSONObject(jsonString);
-            JSONArray mainNode = response.optJSONArray("setting");
+            JSONArray mainNode = response.optJSONArray("settings");
 
             for (int i = 0; i < mainNode.length(); i++) {
-                Button btn = new Button(getActivity().getApplicationContext());
                 JSONObject childNode = mainNode.getJSONObject(i);
                 String name = childNode.optString("setting_name");
-                String options = childNode.optString("setting_options");
-                String out = name + ": " + options;
+                String subNode = childNode.optString("options");
+                String out = name + ": " + subNode;
                 difficultyList.add(createOptions("settings", out));
             }
         } catch(JSONException e) {
