@@ -63,6 +63,13 @@ public class DifficultyListAdapter extends BaseAdapter implements ListAdapter {
             Button btn = new Button(context);
             btn.setText(current);
             btn.setId(convertView.generateViewId());
+
+            btn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    MainActivity.server.sendMessage(optionName + ":" + current);
+                }
+            });
             layout.addView(btn);
         }
 

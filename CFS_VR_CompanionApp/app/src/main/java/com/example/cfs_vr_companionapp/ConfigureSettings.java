@@ -58,31 +58,6 @@ public class ConfigureSettings extends Fragment {
         ListView difficultySettings = (ListView) getView().findViewById(R.id.difficulty_list);
         difficultySettings.setAdapter(new DifficultyListAdapter(getActivity().getApplicationContext(), difficultyList));
 
-        binding.low.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selectedButton = binding.low;
-                MainActivity.difficultySettings.setQuickDifficulty("Low");
-            }
-        });
-
-        binding.medium.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selectedButton = binding.medium;
-                MainActivity.difficultySettings.setQuickDifficulty("Medium");
-            }
-        });
-
-        binding.high.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selectedButton = binding.high;
-                //binding.high.setBackgroundColor(0x00FF00);
-                MainActivity.difficultySettings.setQuickDifficulty("High");
-                MainActivity.server.sendMessage(MainActivity.difficultySettings.setDifficulty());
-            }
-        });
     }
 
     private void retrieveFromJson() {

@@ -57,6 +57,7 @@ public class TCPServer implements Runnable
             e.printStackTrace();
         }
         System.out.println( "vr client connected" );
+        MainActivity.setClientConnected(true);
 
         this.isConnected = true;
 

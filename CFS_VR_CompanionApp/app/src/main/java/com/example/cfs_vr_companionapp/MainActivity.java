@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static UDPBroadcaster udpBroadcast;
 
+    private static boolean clientConnected;
+
 
     private AppBarConfiguration appBarConfiguration;
 
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         udpBroadcast = new UDPBroadcaster();
         server = new TCPServer();
+        clientConnected = false;
 
         difficultySettings = new DifficultySettings();
 
@@ -80,5 +83,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, appBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public static void setClientConnected(boolean _clientConnected) {
+        clientConnected = _clientConnected;
     }
 }
