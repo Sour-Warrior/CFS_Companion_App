@@ -4,10 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -57,21 +59,9 @@ public class DifficultyListAdapter extends BaseAdapter implements ListAdapter {
         TextView difficultyName = (TextView)view.findViewById(R.id.dfName);
         difficultyName.setText(optionName);
 
-        for (int i = 0; i < optionValues.length; i++) {
-            // Go through the list of options to create a button for each value
-            String current = optionValues[i];
-            Button btn = new Button(context);
-            btn.setText(current);
-            btn.setId(convertView.generateViewId());
-
-            btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    MainActivity.server.sendMessage(optionName + ":" + current);
-                }
-            });
-            layout.addView(btn);
-        }
+        Spinner spinner = (Spinner) view.findViewById(R.id.difficulty_options);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_dropdown_item, optionValues);
+        spinner.setAdapter(spinnerAdapter);
 
         return view;
     }
