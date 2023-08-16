@@ -47,7 +47,7 @@ public class ConfigureSettings extends Fragment {
         jsonString = "{ \n" +
                 "    \"app_version\": \"some\",\n" +
                 "    \"settings\": [\n" +
-                "        {\"setting_name\": \"Wind Speed\", \"options\": \"Low,Medium,High\"},\n" +
+                "        {\"setting_name\": \"Wind Speed\", \"options\": \"Low,Medium,High,Ultra\"},\n" +
                 "        {\"setting_name\": \"Grass Height\", \"options\": \"Low,Medium,High\"},\n" +
                 "        {\"setting_name\": \"Water Capacity\", \"options\": \"10000, 20000, 30000\"}\n" +
                 "    ]\n" +
