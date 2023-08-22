@@ -5,9 +5,11 @@ import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -22,6 +24,11 @@ public class TCPServer implements Runnable
     private DataInputStream dataInputStream;
     private DataOutputStream dataOutputStream;
 
+    private BufferedReader bufferedReader;
+
+    String message;
+
+
     private boolean isConnected;
 
     public TCPServer()
@@ -30,6 +37,7 @@ public class TCPServer implements Runnable
         this.thread.setPriority( Thread.NORM_PRIORITY );
         this.thread.start();
         this.isConnected = false;
+        message = "";
 
     }
 
@@ -65,6 +73,8 @@ public class TCPServer implements Runnable
         {
             this.dataOutputStream = new DataOutputStream( new BufferedOutputStream( this.socket.getOutputStream() ) );
             this.dataInputStream = new DataInputStream( new BufferedInputStream( this.socket.getInputStream() ) );
+            bufferedReader = new BufferedReader(new InputStreamReader(dataInputStream));
+
 
         }
         catch ( IOException e )
@@ -89,8 +99,8 @@ public class TCPServer implements Runnable
         {
             try
             {
-                byte test = this.dataInputStream.readByte();
-                System.out.println( "byte received: "+test );
+                int x = this.dataInputStream.read();
+                System.out.println(x);
             }
             catch ( IOException e )
             {

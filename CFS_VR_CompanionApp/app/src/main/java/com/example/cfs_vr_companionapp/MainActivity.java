@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static DifficultySettings difficultySettings;
 
+    private static ConfigureSettings configureSettings;
+
     public static TCPServer server;
 
     public static UDPBroadcaster udpBroadcast;
@@ -41,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         clientConnected = false;
 
         difficultySettings = new DifficultySettings();
+        configureSettings = new ConfigureSettings();
 
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -87,5 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static void setClientConnected(boolean _clientConnected) {
         clientConnected = _clientConnected;
+    }
+
+    public static void setDifficultySettings(String settings) {
+        configureSettings.setOptions(settings);
     }
 }

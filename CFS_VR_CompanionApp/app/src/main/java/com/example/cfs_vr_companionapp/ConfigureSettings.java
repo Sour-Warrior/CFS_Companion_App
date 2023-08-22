@@ -33,6 +33,8 @@ public class ConfigureSettings extends Fragment {
 
     String jsonString;
     String outJsonString = "";
+
+    ListView difficultySettings;
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -43,19 +45,19 @@ public class ConfigureSettings extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        difficultySettings = (ListView) getView().findViewById(R.id.difficulty_list);
         super.onViewCreated(view, savedInstanceState);
         jsonString = "{ \n" +
                 "    \"app_version\": \"some\",\n" +
                 "    \"settings\": [\n" +
                 "        {\"setting_name\": \"Wind Speed\", \"options\": \"Low,Medium,High,Ultra\"},\n" +
                 "        {\"setting_name\": \"Grass Height\", \"options\": \"Low,Medium,High\"},\n" +
-                "        {\"setting_name\": \"Water Capacity\", \"options\": \"10000, 20000, 30000\"}\n" +
+                "         {\"setting_name\": \"Test\", \"options\": \"10000, 20000, 30000\"}\n" +
                 "    ]\n" +
                 "}";
 
         difficultyList = new ArrayList<Map<String, String>>();
         retrieveFromJson();
-        ListView difficultySettings = (ListView) getView().findViewById(R.id.difficulty_list);
         difficultySettings.setAdapter(new DifficultyListAdapter(getActivity().getApplicationContext(), difficultyList));
 
     }
@@ -87,7 +89,11 @@ public class ConfigureSettings extends Fragment {
         return outJsonString;
     }
 
-
+    public void setOptions(String options) {
+        this.jsonString = options;
+        retrieveFromJson();
+        difficultySettings.setAdapter(new DifficultyListAdapter(getActivity().getApplicationContext(), difficultyList));
+    }
 
     @Override
     public void onDestroyView() {
