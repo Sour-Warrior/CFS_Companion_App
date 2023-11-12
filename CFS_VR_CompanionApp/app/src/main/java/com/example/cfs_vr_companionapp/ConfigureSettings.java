@@ -43,7 +43,7 @@ public class ConfigureSettings extends Fragment {
         binding = ConfigureDifficultyBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
-
+    // TODO: figure out why it only allows up to 3 settings
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         difficultySettings = (ListView) getView().findViewById(R.id.difficulty_list);
         super.onViewCreated(view, savedInstanceState);
@@ -51,8 +51,8 @@ public class ConfigureSettings extends Fragment {
                 "    \"app_version\": \"some\",\n" +
                 "    \"settings\": [\n" +
                 "        {\"setting_name\": \"Wind Speed\", \"options\": \"Low,Medium,High,Ultra\"},\n" +
-                "        {\"setting_name\": \"Grass Height\", \"options\": \"Low,Medium,High\"},\n" +
-                "         {\"setting_name\": \"Test\", \"options\": \"10000, 20000, 30000\"}\n" +
+                "        {\"setting_name\": \"Ground Moisture\", \"options\": \"Low,Medium,High\"},\n" +
+                "        {\"setting_name\": \"Water Capacity\", \"options\": \"10000, 20000, 30000\"}\n" +
                 "    ]\n" +
                 "}";
 
